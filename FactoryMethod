@@ -1,0 +1,109 @@
+	
+	let readlineSync = require('readline-sync')
+
+	interface Computador {
+	    cpu: number;
+	    ram: number;
+	    hd: number;
+	    type: string
+	}
+	
+
+	class Server implements Computador { 
+	    cpu: number;
+	    ram: number;
+	    hd: number;
+	    type: string
+	    constructor(cpu: number, ram: number, hd: number, type: string) {
+	        this.cpu = cpu;
+	        this.ram = ram;
+	        this.hd = hd;
+	        this.type = type;
+	    }
+	    getCpu() {
+	        return this.cpu
+	    }
+	    getRam() {
+	        return this.ram
+	    }
+	    getHd() {
+	        return this.hd
+	    }
+	    getType() {
+	        return this.type
+	    }
+	    
+	    toString() {
+	        let configServer: Array<string> = [`Tipo: ${this.type}, Cpu: ${this.cpu}Ghz, Ram: ${this.ram}GB, Hd: ${this.hd}GB`]
+	        return configServer
+	    }
+	}
+	
+
+	class Pc implements Computador {  
+	    cpu: number;
+	    ram: number;
+	    hd: number;
+	    type: string
+	    constructor(cpu: number, ram: number, hd: number, type: string) {
+	        this.cpu = cpu;
+	        this.ram = ram;
+	        this.hd = hd;
+	        this.type = type;
+	    }
+	    getCpu() {
+	        return this.cpu
+	    }
+	    getRam() {
+	        return this.ram
+	    }
+	    getHd() {
+	        return this.hd
+	    }
+	    getType() {
+	        return this.type
+	    }
+	
+	    toString() {
+	        let configPc: string[] = [`Tipo: ${this.type}, Cpu: ${this.cpu}GHz, Ram: ${this.ram}GB, Hd: ${this.hd}GB`]
+	        return configPc
+	    }
+	}
+	
+	class Factory implements Computador {
+	    cpu: number;
+	    ram: number;
+	    hd: number;
+	    type: string;
+	    constructor(cpu: number, ram: number, hd: number, type: string) {
+	        this.cpu = cpu;
+	        this.ram = ram;
+	        this.hd = hd;
+	        this.type = type;
+	    }
+	    toString() {
+	        let configuracao: Array<string> = [`Tipo: ${this.type}, Cpu: ${this.cpu}GHz, Ram: ${this.ram}GB, Hd: ${this.hd}GB`]
+	        return configuracao
+	    }
+	
+	    loja() {
+	
+	        const tipoComp: string = readlineSync.question('Selecione o tipo de Computador [1]pc ou [2]server:\n')
+	        const cpuComp: number = readlineSync.question('Qual o seu processador?[4, 5 ou 6 GHz]\n')
+	        const ramComp: number = readlineSync.question('Quanto de memoria? [16, 32, 64 GB]\n')
+	        const hdComp: number = readlineSync.question('Quanto de HD?[2000, 5000, 10000 GB]\n')
+	        switch (tipoComp) {
+	            case '1':
+	                let novoComputadorPc = new Pc(cpuComp, ramComp, hdComp, 'Pc')
+	
+	                console.table(novoComputadorPc.toString())
+	                break;
+	            case '2':
+	                let novoComputadorServer = new Server(cpuPc, ramComp, hdComp, 'Server')
+	                
+	                console.table(novoComputadorServer.toString())
+	                break;
+	        }
+	    }
+	}
+	Fabrica.prototype.loja()
