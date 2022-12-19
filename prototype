@@ -1,0 +1,85 @@
+public abstract class Carro  {
+       public String nomeModelo;
+       public int preco;
+
+       public String getNomeModelo()
+       {
+             return nomeModelo;
+       }
+
+       public void setNomeModelo(String nomeModelo)
+       {
+             this.nomeModelo = nomeModelo;
+       }
+
+       public static int setPreco()
+       {
+             int preco = 0;
+             Random r = new Random();
+             int p = r.nextInt(100000);
+             preco = p;
+
+             return preco;
+       }
+
+       public Carro clone() throws CloneNotSupportedException
+       {
+             return (Carro)super.clone();
+       }
+}
+
+public class Ford extends Carro {
+       public Ford(String m)
+       {
+             nomeModelo = m;
+       }
+
+       @Override
+       public Carro clone() throws CloneNotSupportedException
+       {
+             return (Ford)super.clone();
+       }
+}
+
+public class Chevrolet extends Carro {
+       public Chevrolet(String m)
+       {
+             nomeModelo = m;
+       }
+
+       @Override
+       public Carro clone() throws CloneNotSupportedException
+       {
+             return (Chevrolet)super.clone();
+       }
+}
+
+public class PrototypePattern  {
+
+
+  public static void main(String args[]) throws CloneNotSupportedException {
+
+     Carro chevrolet = new Chevrolet("Cruze Sport v6");
+    chevrolet.preco = 100000;
+    Carro ford = new Ford("Focus 2.0");
+    ford.preco=500000;
+
+    Carro bc1;
+   
+    bc1 = chevrolet.clone();
+
+    bc1.preco = chevrolet.preco + Carro.setPreco();
+    System.out.println("Nome do Carro: "+ bc1.getNomeModelo() + ",
+    Preço do Carro: " + bc1.preco);
+
+ 
+    bc1 = ford.clone();
+
+   
+    bc1.preco = ford.preco + Carro.setPreco();
+    System.out.println("Nome do Carro: "+ bc1.getNomeModelo() + ",
+    Preço do Carro: "+bc1.preco);
+
+ }
+
+}
